@@ -11,6 +11,7 @@ bonus_points=0
 score=0
 guesses=[]    #SADECE tahminleri içerir/Tahmin edilen harflerin gösterilmesini ve bonus harflerden ayrı tutulmasını sağlar
 letters=[]    #letters listesi hem TAHMİNLERİ hem de işlem ile açılan BONUS harfleri içerir. Kelimeyi ekrana yazdırırken kullanılır.
+math_process=[""]
 while True:
     print("\n\n--Yeni Tur--\n\n  +---+\n  |   |") if len(secret_word)!=true_answers and false_answers!=6 else print("\n\n\n=========== OYUN BİTTİ ===========\n  +---+\n  |   |")  #adam asmacada değişiklik yapılmayacak kısım (platformun en üstü + ip)        
     if false_answers>5:                                        
@@ -64,10 +65,10 @@ while True:
             continue
 
     elif process=="İ":                                    #process>İ>işlem seç/yap
-            islem=str(input("İşlem türünü seçin (toplama/çıkarma/çarpma/bölme) veya 'iptal' yazarak çıkış yapın: "))
+            islem=str(input("İşlem türünü seçin (toplama/çıkarma/çarpma/bölme) veya 'iptal' yazarak çıkış yapın:\n=>Her işlem türü bir kere kullanılabilir! "))
             if islem.lower()=="iptal":
                 continue
-            elif islem.lower()=="toplama":
+            elif islem.lower()=="toplama" and 1 not in math_process:
                 n1=float(input("1. sayı (iptal için 'iptal')"))
                 n2=float(input("2. sayı (iptal için 'iptal')"))
                 if n1=="iptal" or n2=="iptal":
@@ -75,20 +76,22 @@ while True:
                 else:
                     print("Soru: {} + {}".format(n1,n2))
                     sonuc=float(input("Cevabınız:"))
+                    math_process.append(int(1))
                     if sonuc==n1+n2:
                         score+=15
                         bonus_points+=1
                         while True:
                             bonusharf=secret_word[randint(0,len(secret_word)-1)]
                             if bonusharf not in letters:
-                                letters.append(bonusharf)
+                                letters.append(bonusharf)                                                   #bonus harf açılmamış bir harf olana kadar döngü yeni bir bonus harf seçer.
                                 true_answers+=secret_word.count(bonusharf)
-                                print("Bonus ödül \U0001F389: '{}' harfi açıldı ".format(bonusharf))
+                                print("\033[34mDoğru cevap!\033[0m\nBonus ödül \U0001F389: '{}' harfi açıldı ".format(bonusharf))
                                 break
                     else:
+                        print("\033[33mYanlış Cevap!\033[0m")
                         score-=10
                         false_answers+=1
-            elif islem=="çıkarma":
+            elif islem=="çıkarma" and 2 not in math_process:
                 n1=float(input("1. sayı (iptal için 'iptal')"))
                 n2=float(input("2. sayı (iptal için 'iptal')"))
                 if n1=="iptal" or n2=="iptal":
@@ -96,6 +99,7 @@ while True:
                 else:
                     print("Soru: {} - {}".format(n1,n2))
                     sonuc=float(input("Cevabınız:"))
+                    math_process.append(int(2))
                     if sonuc==n1-n2:
                         score+=15
                         bonus_points+=1
@@ -104,12 +108,13 @@ while True:
                             if bonusharf not in letters:
                                 letters.append(bonusharf)                        #bonus harf kaydedilerek kelimeyi yazdırırken kullanılır.
                                 true_answers+=secret_word.count(bonusharf)
-                                print("Bonus ödül \U0001F389: '{}' harfi açıldı ".format(bonusharf))
+                                print("\033[34mDoğru cevap!\033[0m\nBonus ödül \U0001F389: '{}' harfi açıldı ".format(bonusharf))
                                 break
                     else:
+                        print("\033[33mYanlış Cevap!\033[0m")
                         score-=10
                         false_answers+=1
-            elif islem.lower()=="çarpma":
+            elif islem.lower()=="çarpma" and 3 not in math_process:
                 n1=float(input("1. sayı (iptal için 'iptal')"))
                 n2=float(input("2. sayı (iptal için 'iptal')"))
                 if n1=="iptal" or n2=="iptal":
@@ -117,6 +122,7 @@ while True:
                 else:
                     print("Soru: {} * {}".format(n1,n2))
                     sonuc=float(input("Cevabınız:"))
+                    math_process.append(int(3))
                     if sonuc==n1*n2:
                         score+=15
                         bonus_points+=1
@@ -125,12 +131,13 @@ while True:
                             if bonusharf not in letters:
                                 letters.append(bonusharf)
                                 true_answers+=secret_word.count(bonusharf)
-                                print("Bonus ödül \U0001F389: '{}' harfi açıldı ".format(bonusharf))
+                                print("\033[34mDoğru cevap!\033[0m\nBonus ödül \U0001F389: '{}' harfi açıldı ".format(bonusharf))
                                 break
                     else:
+                        print("\033[33mYanlış Cevap!\033[0m")
                         score-=10
                         false_answers+=1
-            elif islem.lower()=="bölme":
+            elif islem.lower()=="bölme" and 4 not in math_process:
                 n1=float(input("1. sayı (iptal için 'iptal')"))
                 n2=float(input("2. sayı (iptal için 'iptal')"))
                 if n1=="iptal" or n2=="iptal":
@@ -138,6 +145,7 @@ while True:
                 else:
                     print("Soru: {} / {}".format(n1,n2))
                     sonuc=float(input("Cevabınız:"))
+                    math_process.append(int(4))
                     if sonuc==n1/n2:
                         score+=15
                         bonus_points+=1
@@ -146,9 +154,10 @@ while True:
                             if bonusharf not in letters:
                                 letters.append(bonusharf)
                                 true_answers+=secret_word.count(bonusharf)
-                                print("Bonus ödül \U0001F389: '{}' harfi açıldı ".format(bonusharf))
+                                print("\033[34mDoğru cevap!\033[0m\nBonus ödül \U0001F389: '{}' harfi açıldı ".format(bonusharf))
                                 break
                     else:
+                        print("\033[33mYanlış Cevap!\033[0m")
                         score-=10
                         false_answers+=1
 
