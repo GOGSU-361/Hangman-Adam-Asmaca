@@ -11,7 +11,7 @@ bonus_points=0
 score=0
 guesses=[]    #SADECE tahminleri içerir/Tahmin edilen harflerin gösterilmesini ve bonus harflerden ayrı tutulmasını sağlar
 letters=[]    #letters listesi hem TAHMİNLERİ hem de işlem ile açılan BONUS harfleri içerir. Kelimeyi ekrana yazdırırken kullanılır.
-math_process=[""]
+math_process=[]
 while True:
     print("\n\n--Yeni Tur--\n\n  +---+\n  |   |") if len(secret_word)!=true_answers and false_answers!=6 else print("\n\n\n=========== OYUN BİTTİ ===========\n  +---+\n  |   |")  #adam asmacada değişiklik yapılmayacak kısım (platformun en üstü + ip)        
     if false_answers>5:                                        
