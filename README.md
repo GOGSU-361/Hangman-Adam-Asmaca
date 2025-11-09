@@ -11,3 +11,4 @@ Kullanıcı kendi belirlediği sayısal işlemleri çözerek harf açabilir ve k
 - Sayısal işlemler aracılığıyla kullanıcı ipucu alabilir
 - Kullanıcının tahmini kontrol edilerek ekrana kalan tahmin hakkı ekrana yazdırılır
 - Kazanma veya kaybetme durumunda ekrana yazdırılır.
+- Oyuncunun skoru oyun sonunda yazdırılır.
