@@ -1,6 +1,6 @@
 from random import randint
-fruits=["portakal","armut","karpuz","incir","elma","mandalina","çilek","böğürtlen","kiraz","mango",""]
-animals=["maymun","köpek","zürafa","yılan","ahtapot","kertenkele","martı","kartal","kaplan","iguana","karı"] 
+fruits=["portakal","armut","karpuz","incir","elma","mandalina","çilek","böğürtlen","kiraz","mango"]
+animals=["maymun","köpek","zürafa","yılan","ahtapot","kertenkele","martı","kartal","kaplan","iguana"] 
 words=fruits+animals                             #rastgele kelimenin seçileceği liste, tüm kelimeleri içerir
 secret_word=words[randint(0,len(words))-1]           
 a=["      |","      |","      |","      |"]      #oyunda adamın asılacağı kısım, satır satır
